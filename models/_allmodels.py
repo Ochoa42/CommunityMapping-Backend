@@ -15,13 +15,15 @@ class ItemIn(BaseModel):
 class BarData(BaseModel):
     title: str
     explanation: str
-    problematic: List[Problematic]  # Ej: ['Category 1', 'Category 2']
+    labels = List[str]
+    values = List[float] # Ej: ['Category 1', 'Category 2']
 
 # Definir el esquema para los datos de un gráfico de torta
 class PieData(BaseModel):
     title: str
     explanation: str
-    problematic: List[Problematic]  # Ej: ['Category 1', 'Category 2']
+    labels = List[str]
+    percentages = List[float]
 
 # Definir el esquema para el visual (puede ser un gráfico de barras o torta)
 class Visual(BaseModel):
@@ -32,3 +34,4 @@ class Visual(BaseModel):
 class ResponseOut(BaseModel):
     message: str
     visual: List[Visual]
+    
