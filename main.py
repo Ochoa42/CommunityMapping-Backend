@@ -42,7 +42,7 @@ async def create_item(item: ItemIn):
         title='Titulo de Pie  char generado por ia',
         explanation='Explicacion del grafico generado por ia',
         labels = ["label1", "label2", "label3"],
-        percentages = ["per1", "per2", "per3"],
+        percentages = ["per1", "per2", "per3"]
     )
 
     # Crear la lista de visuales (gráfico de barras y gráfico de torta)
