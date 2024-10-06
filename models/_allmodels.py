@@ -1,6 +1,11 @@
 from pydantic import BaseModel
 from typing import List, Union
 
+# Definir el esquema para los datos de una problemática
+class Problematic(BaseModel):
+    date: str
+    quantity: float
+    locality: str
 
 # Definir el esquema de los datos que se recibirán en el POST
 class ItemIn(BaseModel):
@@ -10,15 +15,13 @@ class ItemIn(BaseModel):
 class BarData(BaseModel):
     title: str
     explanation: str
-    labels: List[str]  # Ej: ['Category 1', 'Category 2']
-    values: List[float]  # Ej: [10.0, 20.0]
+    problematic: List[Problematic]  # Ej: ['Category 1', 'Category 2']
 
 # Definir el esquema para los datos de un gráfico de torta
 class PieData(BaseModel):
     title: str
     explanation: str
-    labels: List[str]  # Ej: ['Category 1', 'Category 2']
-    percentages: List[float]  # Ej: [50.0, 50.0]
+    problematic: List[Problematic]  # Ej: ['Category 1', 'Category 2']
 
 # Definir el esquema para el visual (puede ser un gráfico de barras o torta)
 class Visual(BaseModel):
