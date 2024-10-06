@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Union
 
-from models._allmodels import ResponseOut
+from models._allmodels import RecomendationPlots
 
 from pydantic import BaseModel
 import openai
@@ -175,16 +175,33 @@ completion = client.beta.chat.completions.parse(
     messages=[
         {
             "role": "system",
-            "content": "Eres un asistente muy util, ayudas a dar recomendaciones de grafica basado en estadisticas que recibes, como tambien dando un analisis desde tu perspectiva generando mucha informacion para graficar y visualizar los datos como tambien un mensaje que ayuda a interpretar los datos recibidos, aqui tienes los datos recibidos del usuario.",
+            "content": "Eres un asistente muy util, ayudas a dar recomendaciones de grafica basado en estadisticas que recibes, como tambien dando un analisis desde tu perspectiva generando mucha informacion para graficar y visualizar los datos como tambien un mensaje que ayuda a interpretar los datos recibidos, aqui tienes los datos recibidos del usuario. Estas limitado a solo sugerir 2 graficas",
         },
         {
             "role": "user",
             "content": f"tengo este analisis de 2 variables que son problematica de mi pais Bolivia :  {stats_text}",
         },
     ],
-    tools=[
-        openai.pydantic_function_tool(ResponseOut),
-    ],
+    
+    response_format=RecomendationPlots,
+    # tools=[
+    #     openai.pydantic_function_tool(ResponseOut),
+    # ],
 )
 
-print(completion.choices[0].message.tool_calls[0].function.parsed_arguments)
+
+# completion = client.beta.chat.completions.parse(
+#     model="gpt-4o-2024-08-06",
+#     messages=[
+#         {"role": "system", "content": "You are a helpful math tutor. Guide the user through the solution step by step."},
+#         {"role": "user", "content": "how can I solve 8x + 7 = -23"}
+#     ],
+#     response_format=ResponseOut,
+# )
+print('1')
+print(type(completion.choices[0].message.parsed))
+
+print('-----')
+
+
+print(completion.choices[0].message.parsed)

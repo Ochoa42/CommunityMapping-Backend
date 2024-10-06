@@ -1,37 +1,34 @@
 from pydantic import BaseModel
-from typing import List, Union
+from typing import ClassVar, List, Union
+from enum import Enum
 
-# Definir el esquema para los datos de una problemática
-class Problematic(BaseModel):
-    date: str
-    quantity: float
-    locality: str
 
-# Definir el esquema de los datos que se recibirán en el POST
+# Definir el esquema de los datos de entrada
 class ItemIn(BaseModel):
     name: str
+    price: float
+    tax: float = None
+class ChartType(str, Enum):
+    bar = "bar"
+    pie = "pie"
 
 # Definir el esquema para los datos de un gráfico de barras
 class BarData(BaseModel):
-    title: str
-    explanation: str
-    labels = List[str]
-    values = List[float] # Ej: ['Category 1', 'Category 2']
+    labels: List[str]  # Ej: ['Category 1', 'Category 2']
+    values: List[float]  # Ej: [10.0, 20.0]
 
 # Definir el esquema para los datos de un gráfico de torta
 class PieData(BaseModel):
-    title: str
-    explanation: str
-    labels = List[str]
-    percentages = List[float]
+    labels: List[str]  # Ej: ['Category 1', 'Category 2']
+    percentages: List[float]  # Ej: [50.0, 50.0]
 
-# Definir el esquema para el visual (puede ser un gráfico de barras o torta)
+# Definir el esquema para el visual con discriminador explícito en el nivel superior
 class Visual(BaseModel):
-    char_type: str  # Puede ser "bar" o "pie"
-    data: Union[BarData, PieData]  # Dependiendo del tipo de gráfico
+    char_type: ChartType  # Tipo de gráfico: bar o pie
+    bar_data: BarData = None  # Opcional, solo si el char_type es bar
+    pie_data: PieData = None  # Opcional, solo si el char_type es pie
 
 # Definir el esquema para la respuesta de salida
-class ResponseOut(BaseModel):
+class RecomendationPlots(BaseModel):
     message: str
     visual: List[Visual]
-    
