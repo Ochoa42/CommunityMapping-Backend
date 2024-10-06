@@ -3,11 +3,20 @@
 from typing import Union, Optional
 from fastapi import FastAPI
 from pydantic import BaseModel
-
+from fastapi.middleware.cors import CORSMiddleware
 from models._allmodels import ItemIn, ResponseOut, Visual, BarData, PieData, Problematic
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],  
+    allow_headers=["*"],  
+)
+
 
 # Crear el endpoint POST
 @app.post("/ia-process/", response_model=ResponseOut)
