@@ -18,3 +18,10 @@ source env/Scripts/activate
 python -m pip install -r  requirements.txt
 ```
 
+## STEP 3
+### Levantar la api
+
+```sh
+python -m uvicorn main:app --reload --port 8001
+```
+
