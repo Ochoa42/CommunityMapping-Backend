@@ -32,16 +32,16 @@ async def create_item(item: ItemIn):
     # )
     # Ejemplo de visualización para gráfico de barras
     bar_data = BarData(
-        title='Titulo de Bar char generado por ia',
-        explanation='Explicacion del grafico generado por ia',
+        title_char='Titulo de Bar char generado por ia',
+        explanation_char='Explicacion del grafico generado por ia',
         labels = ["label1", "label2", "label3"],
         values= [104, 200, 103]
     )
 
     # Ejemplo de visualización para gráfico de torta
     pie_data = PieData(
-        title='Titulo de Pie  char generado por ia',
-        explanation='Explicacion del grafico generado por ia',
+        title_char='Titulo de Pie  char generado por ia',
+        explanation_char='Explicacion del grafico generado por ia',
         labels = ["label1", "label2", "label3"],
         percentages = [50.3, 20.3, 29.4]
     )

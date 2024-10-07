@@ -14,11 +14,15 @@ class ChartType(str, Enum):
 
 # Definir el esquema para los datos de un gráfico de barras
 class BarData(BaseModel):
+    title_char: str
+    explanation_char: str
     labels: List[str]  # Ej: ['Category 1', 'Category 2']
     values: List[float]  # Ej: [10.0, 20.0]
 
 # Definir el esquema para los datos de un gráfico de torta
 class PieData(BaseModel):
+    title_char: str
+    explanation_char: str
     labels: List[str]  # Ej: ['Category 1', 'Category 2']
     percentages: List[float]  # Ej: [50.0, 50.0]
 
